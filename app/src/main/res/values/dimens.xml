@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="number_input_height">180dp</dimen>
+    <dimen name="item_operator_width">60dp</dimen>
+    <dimen name="item_operator_height">60dp</dimen>
+</resources>

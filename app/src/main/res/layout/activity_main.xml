@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:scaleType="fitXY"
+        tools:src="@drawable/kurumi" />
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/TextColorPrimaryStyle"
+        android:gravity="end"
+        android:padding="8dp"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_input"
+        style="@style/InputEditTextStyle"
+        android:layout_marginBottom="12dp"
+        android:importantForAutofill="no"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="@+id/divider"
+        tools:ignore="LabelFor" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/DividerStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_pad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_pad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_clear"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="C"
+            app:layout_constraintBottom_toTopOf="@id/num_9"
+            app:layout_constraintEnd_toStartOf="@+id/mtv_percentage"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_percentage"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="%"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/mtv_clear"
+            app:layout_constraintEnd_toStartOf="@+id/mtv_divide"
+            app:layout_constraintStart_toEndOf="@+id/mtv_clear" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_divide"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="\u00F7"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/mtv_percentage"
+            app:layout_constraintEnd_toStartOf="@id/mtv_multiply"
+            app:layout_constraintStart_toEndOf="@+id/mtv_percentage" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_multiply"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="x"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/mtv_divide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mtv_divide" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_subtract"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="-"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/mtv_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/num_7"
+            app:layout_constraintTop_toBottomOf="@id/mtv_multiply" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_add"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:padding="10dp"
+            android:text="+"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/mtv_calculate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/num_4"
+            app:layout_constraintTop_toBottomOf="@id/mtv_subtract" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_calculate"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_operator_background"
+            android:backgroundTint="@color/primary_on_color"
+            android:padding="10dp"
+            android:text="="
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/num_1"
+            app:layout_constraintTop_toBottomOf="@id/mtv_add" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_9"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="9"
+            app:layout_constraintBottom_toTopOf="@+id/num_6"
+            app:layout_constraintEnd_toStartOf="@id/num_8"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_8"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="8"
+            app:layout_constraintBottom_toTopOf="@+id/num_5"
+            app:layout_constraintEnd_toStartOf="@id/num_7"
+            app:layout_constraintStart_toEndOf="@id/num_9" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_7"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="7"
+            app:layout_constraintBottom_toTopOf="@+id/num_4"
+            app:layout_constraintEnd_toStartOf="@id/mtv_subtract"
+            app:layout_constraintStart_toEndOf="@id/num_8" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_6"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="6"
+            app:layout_constraintBottom_toTopOf="@id/num_3"
+            app:layout_constraintEnd_toStartOf="@id/num_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_5"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@id/num_2"
+            app:layout_constraintEnd_toStartOf="@id/num_4"
+            app:layout_constraintStart_toEndOf="@id/num_6" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_4"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@+id/num_1"
+            app:layout_constraintEnd_toStartOf="@+id/mtv_add"
+            app:layout_constraintStart_toEndOf="@id/num_5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_3"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="3"
+            app:layout_constraintBottom_toTopOf="@+id/num_0"
+            app:layout_constraintEnd_toStartOf="@id/num_2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_2"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="2"
+            app:layout_constraintBottom_toTopOf="@+id/num_0"
+            app:layout_constraintEnd_toStartOf="@id/num_1"
+            app:layout_constraintStart_toEndOf="@id/num_3" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_1"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/num_0"
+            app:layout_constraintEnd_toStartOf="@id/mtv_calculate"
+            app:layout_constraintStart_toEndOf="@id/num_2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/num_0"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/num_2"
+            app:layout_constraintStart_toStartOf="@id/num_2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_decimal_dot"
+            style="@style/TextColorSecondaryStyle"
+            android:background="@drawable/item_ripple_background"
+            android:padding="10dp"
+            android:text="\u2022"
+            app:layout_constraintBottom_toBottomOf="@id/num_0"
+            app:layout_constraintEnd_toEndOf="@id/num_1"
+            app:layout_constraintStart_toStartOf="@id/num_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
