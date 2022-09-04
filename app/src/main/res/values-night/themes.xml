@@ -11,7 +11,8 @@
         <item name="colorOnSecondary">@color/secondary_on_color</item>
 
         <!-- Customs -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@color/window_color_background</item>
+        <item name="android:navigationBarColor">@color/window_color_background</item>
         <item name="android:windowBackground">@color/window_color_background</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>

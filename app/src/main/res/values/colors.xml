@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="window_color_background">#FF000000</color>
+    <color name="window_color_background">#101010</color>
 
     <color name="primary_color">#0D7D4C</color>
     <color name="primary_on_color">#C65B3A</color>

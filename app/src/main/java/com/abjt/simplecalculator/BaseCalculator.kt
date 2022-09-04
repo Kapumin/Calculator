@@ -5,16 +5,8 @@ import com.abjt.simplecalculator.Operator.*
 
 open class BaseCalculator : AppCompatActivity(), Calculator {
 
-    protected var operands: MutableList<Double> = mutableListOf()
-    protected var selectedOperators: MutableList<Pair<Int, Operator>> = mutableListOf()
-
-    protected val operatorValidator by lazy { OperatorValidator() }
-    protected val inputStack by lazy { InputStack.createStack() }
+    private val inputStack by lazy { InputStack.createStack() }
     protected val inputParser by lazy { InputParser.createParser(inputStack) }
-
-    protected fun addOperand(operand: Double) {
-        operands.add(operand)
-    }
 
     override fun calculate(operator: Operator): Double {
         return when (operator) {

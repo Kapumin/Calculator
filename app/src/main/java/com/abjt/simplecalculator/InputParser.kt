@@ -1,30 +1,37 @@
 package com.abjt.simplecalculator
 
-import android.util.Log
-
-class InputParser private constructor(private val inputStack: InputStack) : OperatorValidator() {
+class InputParser private constructor(private val inputStack: InputStack) {
 
     private var number: String = ""
     private var stackIndex: Int = -1
+        get() {
+            field += 1
+            return field
+        }
 
     fun parse(input: CharSequence, start: Int, end: Int) {
-        input.subSequence(start, end).toString().forEachIndexed { index: Int, char: Char ->
-            if (isOperator(char).not()) {
+        input.subSequence(start, end).toString().forEach { char: Char ->
+            if ((input isOperator char).not()) {
                 number = number.plus(char.toString())
-                Log.d("Neko -> ", "number = $number")
-                return@forEachIndexed
+                return@forEach
             }
-            stackIndex++
-            Log.d("Neko -> ", "number index = $stackIndex | operator index = ${stackIndex+1}")
             inputStack.add(stackIndex, number.toDouble())
-            inputStack.add(stackIndex + 1, char)
-            Log.d("Neko -> ", "input stack = $inputStack | size = ${inputStack.size}")
+            inputStack.add(stackIndex, char)
             resetNumber()
         }
     }
 
     private fun resetNumber() {
         number = ""
+    }
+
+    private fun resetStack() {
+        inputStack.clear()
+    }
+
+    fun reset() {
+        resetNumber()
+        resetStack()
     }
 
     companion object {

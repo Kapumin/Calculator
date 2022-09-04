@@ -1,25 +1,25 @@
 package com.abjt.simplecalculator
 
+import android.util.Log
+
 class InputStack {
 
     private var _currentIndex: Int = INVALID_INDEX
-    private var _previousIndex: Int = INVALID_INDEX
-    private var _nextIndex: Int = INVALID_INDEX
 
     val currentIndex
         get() = _currentIndex
 
     val previousIndex
-        get() = _previousIndex
+        get() = currentIndex - 1
 
     val nextIndex
-        get() = _nextIndex
+        get() = currentIndex + 1
 
     private lateinit var value: Any
 
     private lateinit var _inputStack: MutableList<Any>
 
-    val input
+    private val inputStack
         get() = _inputStack
 
     init {
@@ -31,18 +31,20 @@ class InputStack {
     }
 
     fun add(index: Int, element: Any) {
-        _inputStack.add(element)
-//        _previousIndex = index - 1
-//        _currentIndex = index
-//        _nextIndex = index + 1
+        Log.d("Neko -> ", "stack index = $index")
+        _inputStack.add(index, element)
     }
 
-    fun get(position: Int) = input[position]
+    fun get(position: Int) = inputStack[position]
 
     val size
-        get() = input.size
+        get() = inputStack.size
 
-    override fun toString(): String = input.toString()
+    fun clear() {
+        _inputStack.clear()
+    }
+
+    override fun toString(): String = inputStack.toString()
 
     companion object {
         private const val INVALID_INDEX = -1

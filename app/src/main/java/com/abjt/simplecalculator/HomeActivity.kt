@@ -5,8 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ImageView
 import com.abjt.simplecalculator.Operator.*
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.textview.MaterialTextView
 
 class HomeActivity : BaseCalculator() {
@@ -36,17 +34,15 @@ class HomeActivity : BaseCalculator() {
 
     private lateinit var backgroundView: ImageView
 
-    private var isOperatorSelected: Boolean = false
+    private var isOperatorSelected: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
         setClickListeners()
-        setupBackground()
     }
 
-    //initialising the view variables here
     private fun initViews() {
         numZero = findViewById(R.id.num_0)
         numOne = findViewById(R.id.num_1)
@@ -69,8 +65,6 @@ class HomeActivity : BaseCalculator() {
         multiply = findViewById(R.id.mtv_multiply)
         divide = findViewById(R.id.mtv_divide)
         percentage = findViewById(R.id.mtv_percentage)
-
-        backgroundView = findViewById(R.id.view_background)
     }
 
     private fun setClickListeners() {
@@ -108,68 +102,60 @@ class HomeActivity : BaseCalculator() {
         add.setOnClickListener {
             if (isOperatorSelected.not()) {
                 setInput(ADDITION.symbol.toString())
-                selectedOperators.add(Pair(selectedOperators.size, ADDITION))
             }
         }
 
         subtract.setOnClickListener {
             if (isOperatorSelected.not()) {
                 setInput(SUBTRACTION.symbol.toString())
-                selectedOperators.add(Pair(selectedOperators.size, SUBTRACTION))
             }
         }
 
         multiply.setOnClickListener {
             if (isOperatorSelected.not()) {
                 setInput(MULTIPLICATION.symbol.toString())
-                selectedOperators.add(Pair(selectedOperators.size, MULTIPLICATION))
             }
         }
 
         divide.setOnClickListener {
             if (isOperatorSelected.not()) {
                 setInput(DIVISION.symbol.toString())
-                selectedOperators.add(Pair(selectedOperators.size, DIVISION))
             }
         }
 
         percentage.setOnClickListener {
             if (isOperatorSelected.not()) {
                 setInput(PERCENTAGE.symbol.toString())
-                selectedOperators.add(Pair(selectedOperators.size, PERCENTAGE))
             }
         }
 
         calculate.setOnClickListener {
-            if (selectedOperators.size > 1) {
-                selectedOperators.forEach {
-                }
-            }
+
         }
 
         clear.setOnClickListener {
             clearInput()
+            inputParser.reset()
         }
 
         inputView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) = Unit
 
-            override fun afterTextChanged(editable: Editable?) {
-            }
+            override fun afterTextChanged(editable: Editable?) = Unit
 
             override fun onTextChanged(changedText: CharSequence?, start: Int, before: Int, count: Int) {
-                if (count != 0) {
-                    changedText?.let {
-                        parseInput(it, before, count)
-                        isOperatorSelected = operatorValidator.isOperator(it[count - 1])
-                    }
-                }
+                if (count != 0) parseInput(changedText, before, count)
             }
         })
     }
 
-    private fun parseInput(input: CharSequence, start: Int, end: Int) {
-        inputParser.parse(input, start, end)
+    private fun parseInput(input: CharSequence?, start: Int, count: Int): Unit = run {
+        input?.let { charSequence ->
+            if ((charSequence startsWithOperator charSequence[count - 1]).not()) {
+                isOperatorSelected = charSequence isOperator charSequence[count - 1]
+                inputParser.parse(charSequence, start, count)
+            }
+        }
     }
 
     private fun clearInput() {
@@ -184,12 +170,5 @@ class HomeActivity : BaseCalculator() {
         inputView.apply {
             text = text.toString().plus(input)
         }
-    }
-
-    private fun setupBackground() {
-        Glide.with(this)
-            .load(R.drawable.kurumi)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .into(backgroundView)
     }
 }
